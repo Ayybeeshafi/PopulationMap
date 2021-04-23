@@ -13,9 +13,6 @@ def dataCleaning():
 
     PakPopulation.loc[PakPopulation['Gender']=="Female",yearsLst]=PakPopulation[yearsLst].apply(lambda x:-x)
     print(PakPopulation)
-    return PakPopulation
-
-def dataVisualization(PakPopulation):
 
     pt.ggplot(pt.aes(x=PakPopulation['Series Name'],y=PakPopulation[:,'1960':'2019'],fill=PakPopulation["Gender"])) +\
              pt.geom_bar(stat ='identity')+\
@@ -27,6 +24,12 @@ def dataVisualization(PakPopulation):
         PakPopulation['1960':'2019'],
         transition_length=1,
         state_length=2
+    )+ \
+    pt.labs(
+        title=f'Pakistan Population Change (1960-2020)\n\n{yearsLst}',
+        subtitle='',
+        y='\n\nPopulation',
+        caption='@SAyybeeshafi \n\nData Source: https://databank.worldbank.org'
     )+   pt.enter_fade() + pt.exit_fade() + pt.ease_aes('cubic-in-out') + pt.animate(
         fps=24,
         duration=30,
@@ -36,5 +39,4 @@ def dataVisualization(PakPopulation):
     )
 
 if __name__ == '__main__':
-    population = dataCleaning()
-    dataVisualization(population)
+    dataCleaning()
