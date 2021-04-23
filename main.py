@@ -3,6 +3,7 @@ import plotnine as pt
 
 
 def dataCleaning():
+
     PakPopulation = pd.read_csv("Data_Extract_From_Health_Nutrition_and_Population_Statistics.csv")
     PakPopulation['Gender']=PakPopulation['Series Name'].apply(lambda x:'Female' if 'female' in x else 'Male')
     PakPopulation['Series Name'] = PakPopulation['Series Name'].str[16:21]
@@ -40,6 +41,3 @@ def dataCleaning():
 
 if __name__ == '__main__':
     dataCleaning()
-
-    breaks = c(-3000000, -6000000, -9000000,-12000000,-15000000, 0, 3000000, 6000000, 9000000,12000000,15000000),
-    label = c("3M", "6M", "9M","12M","15M", "0", "3M", "6M", "9M","12M","15M")
